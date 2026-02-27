@@ -1,3 +1,13 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6HS71HWC1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6HS71HWC1');
+</script>
+
 const board = document.getElementById("board");
 const timerDisplay = document.getElementById("timer");
 const correctDisplay = document.getElementById("correct");
@@ -277,3 +287,4 @@ function openFullscreen() {
 loadLevels();
 levelSelect.selectedIndex = 0;
 startGame();
+
