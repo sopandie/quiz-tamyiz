@@ -1,0 +1,286 @@
+body {
+  background: url("background.jpg") no-repeat center center/cover;
+  font-family: "Segoe UI", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center; /* tengah horizontal */
+  justify-content: center; /* tengah vertikal */
+
+  min-height: 100vh;
+  overflow-y: auto; /* bisa scroll */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 120px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+#creator {
+  color: rgb(194, 190, 190);
+  font-size: 14px;
+}
+@font-face {
+  font-family: "LPMQ Isep Misbah";
+  src: url("font/lpmq.ttf") format("truetype");
+}
+
+h1 {
+  width: 640px;
+  margin: 20px auto 10px auto;
+  padding: 14px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(150, 240, 245, 0.95),
+    rgba(70, 190, 200, 0.95)
+  );
+
+  border-radius: 14px;
+  text-align: center;
+
+  color: #003b44;
+  font-weight: bold;
+
+  /* Efek 3D */
+  box-shadow:
+    0 4px 0 #2aa3ad,
+    0 8px 15px rgba(0,0,0,0.25);
+
+  text-shadow:
+    1px 1px 0 #ffffff,
+    2px 2px 4px rgba(0,0,0,0.3);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+h1:hover {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 #2aa3ad,
+    0 4px 10px rgba(0,0,0,0.25);
+}
+
+#stats {
+  width: 640px; /* sama dengan judul */
+  margin: 10px auto;
+  display: flex;
+  justify-content: center; /* tengah horizontal */
+  gap: 40px; /* jarak antar item */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 120px);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 120px;
+  height: 60px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.card.flip .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid #f8f9fa;
+}
+
+.card-front {
+  background-color: #dd4905;
+  color: #fff;
+}
+
+.card:not(.flip):hover .card-front {
+  background-color: #053794; /* warna sedikit lebih terang */
+  transform: scale(1.05); /* sedikit membesar */
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(247, 245, 244, 0.7);
+}
+.card-back {
+  background-color: rgb(238, 236, 103);
+  transform: rotateY(180deg);
+}
+
+.latin {
+  font-size: 16px;
+  color: #003366;
+}
+
+.arab {
+  font-family: "LPMQ Isep Misbah";
+  font-size: 24px;
+  direction: rtl;
+  color: #1a0dab;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 22px;
+
+  background: linear-gradient(
+    145deg,
+    #2d8cff,
+    #0066cc
+  );
+
+  color: white;
+  border: none;
+  border-radius: 10px;
+
+  font-weight: bold;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  /* Efek 3D timbul */
+  box-shadow:
+    0 4px 0 #004a99,
+    0 8px 15px rgba(0,0,0,0.3);
+
+  transition: all 0.15s ease;
+}
+button:hover {
+  background: linear-gradient(
+    145deg,
+    #4da3ff,
+    #007bff
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 0 #004a99,
+    0 12px 20px rgba(0,0,0,0.35);
+}
+
+/* ===================== */
+/* 🏆 LEADERBOARD STYLE */
+/* ===================== */
+
+#leaderboard-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  animation: fadeIn 0.4s ease;
+}
+.leaderboard-box table {
+  width: 100%;
+  border-collapse: collapse; /* penting supaya garis menyatu */
+  margin-top: 20px;
+  table-layout: fixed; /* kolom sejajar */
+}
+
+.leaderboard-box th,
+.leaderboard-box td {
+  border: 1px solid #ccc; /* garis tabel */
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.leaderboard-box th {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+/* Atur lebar kolom agar sejajar */
+.leaderboard-box th:nth-child(1),
+.leaderboard-box td:nth-child(1) {
+  width: 20%;
+}
+
+.leaderboard-box th:nth-child(2),
+.leaderboard-box td:nth-child(2) {
+  width: 50%;
+}
+
+.leaderboard-box th:nth-child(3),
+.leaderboard-box td:nth-child(3) {
+  width: 30%;
+}
+
+.leaderboard-box tbody tr:nth-child(even) {
+  background-color: #0a0a0a;
+}
+
+.gold {
+  color: gold;
+  font-weight: bold;
+}
+.silver {
+  color: silver;
+  font-weight: bold;
+}
+.bronze {
+  color: #cd7f32;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz Memory Tamyiz</title>
+    <link rel="icon" type="icon" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <h1 id="game-title"></h1>
+      <p id="creator">Created by: Sopandi @2026</p>
+
+      <!-- PILIH LEVEL -->
+      <select id="level-select"></select>
+
+      <div id="stats">
+        <div>⏱️ Waktu: <span id="timer">0</span> detik</div>
+        <div>✅ Benar: <span id="correct">0</span></div>
+        <div>❌ Salah: <span id="wrong">0</span></div>
+      </div>
+
+      <div class="game-board" id="board"></div>
+      <button onclick="openFullscreen()">🔲 Fullscreen</button>
+      <button onclick="restartGame()">🔁 Main Lagi</button>
+      <button onclick="exitGame()">🚪 Exit</button>
+
+      <audio id="sound-correct" src="correct.mp3"></audio>
+      <audio id="sound-wrong" src="wrong.mp3"></audio>
+
+      <!-- ===================== -->
+      <!-- 🏆 LAYAR LEADERBOARD -->
+      <!-- ===================== -->
+      <div id="leaderboard-screen">
+        <div class="leaderboard-box">
+          <h2 style="color: white;">🏆 Papan Peringkat</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Peringkat</th>
+                <th>Nama</th>
+                <th>Waktu (detik)</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+          <br />
+          <button onclick="resetLeaderboard()">🗑 Reset</button>
+          <button onclick="closeLeaderboard()">Tutup</button>
+        </div>
+      </div>
+
+      <script src="questions.js"></script>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>
